@@ -1,8 +1,7 @@
 package com.wisercat.filters.controller;
 
-import com.wisercat.filters.service.FilterService;
 import com.wisercat.filters.model.FilterDto;
-import org.springframework.http.HttpStatus;
+import com.wisercat.filters.service.FilterService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -21,8 +20,9 @@ public class FilterController {
 
     @PostMapping
     public ResponseEntity<FilterDto> createFilter(@RequestBody FilterDto filterDto) {
-        FilterDto createdFilterDto = filterService.createFilter(filterDto);
-        return new ResponseEntity<>(createdFilterDto, HttpStatus.CREATED);
+//        FilterDto createdFilterDto = filterService.createFilter(filterDto);
+//        return new ResponseEntity<>(createdFilterDto, HttpStatus.CREATED);
+        return null;
     }
 
     // Additional endpoints for update, delete, list, etc.

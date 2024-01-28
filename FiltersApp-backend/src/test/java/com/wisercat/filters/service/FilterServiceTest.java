@@ -1,2 +1,4 @@
-package com.wisercat.filters.service;public class FilterServiceTest {
+package com.wisercat.filters.service;
+
+public class FilterServiceTest {
 }
