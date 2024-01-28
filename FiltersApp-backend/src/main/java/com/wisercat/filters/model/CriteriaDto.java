@@ -1,4 +1,4 @@
-package com.wisercat.filtersapp.model;
+package com.wisercat.filters.model;
 
 import lombok.Getter;
 import lombok.Setter;

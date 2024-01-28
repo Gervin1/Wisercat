@@ -1,4 +1,4 @@
-package com.wisercat.filtersapp.model;
+package com.wisercat.filters.model;
 
 import jakarta.persistence.*;
 import lombok.Getter;

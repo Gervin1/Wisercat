@@ -1,8 +1,8 @@
-package com.wisercat.filtersapp.service;
+package com.wisercat.filters.service;
 
-import com.wisercat.filtersapp.model.Filter;
-import com.wisercat.filtersapp.model.FilterDto;
-import com.wisercat.filtersapp.repository.FilterRepository;
+import com.wisercat.filters.model.Filter;
+import com.wisercat.filters.model.FilterDto;
+import com.wisercat.filters.repository.FilterRepository;
 import org.springframework.stereotype.Service;
 
 @Service

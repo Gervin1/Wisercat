@@ -1,7 +1,7 @@
-package com.wisercat.filtersapp.controller;
+package com.wisercat.filters.controller;
 
-import com.wisercat.filtersapp.model.FilterDto;
-import com.wisercat.filtersapp.service.FilterService;
+import com.wisercat.filters.service.FilterService;
+import com.wisercat.filters.model.FilterDto;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
