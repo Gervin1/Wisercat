@@ -11,8 +11,14 @@ public class Criteria {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
+    @Column(name = "type", nullable = false)
     private String type;
-    private String condition;
+
+    @Column(name = "criteria_condition", nullable = false)
+    private String criteria_condition;
+
+    @Column(name = "value")
     private String value;
 
     @ManyToOne(fetch = FetchType.LAZY)
