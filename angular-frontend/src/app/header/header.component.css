@@ -1,0 +1,12 @@
+.main-header {
+  background: #14c0d3;
+  color: white;
+  padding: 30px;
+  text-align: center;
+}
+.main-header p {
+  margin: 0;
+  font-size: 36px;
+  font-weight: bold;
+}
+

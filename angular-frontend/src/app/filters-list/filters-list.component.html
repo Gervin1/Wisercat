@@ -1,1 +1,28 @@
-<p>filters-list works!</p>
+<div class="filters-list">
+  <button (click)="openFilterModal()">Add Filter (Modal)</button>
+  <button (click)="openFilterNonModal()">Add Filter (Non-Modal)</button>
+
+  <div #dialogContainer></div>
+<table>
+  <thead>
+  <tr>
+    <th>Filter Name</th>
+    <th>Criteria</th>
+    <th>Created At</th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr *ngFor="let filter of filters">
+    <td>{{ filter.name }}</td>
+    <td>
+      <ul>
+        <li *ngFor="let criterion of filter.criteriaList">
+          {{ criterion.type }}: {{ criterion.condition }} {{ criterion.comparingValue }}
+        </li>
+      </ul>
+    </td>
+    <td>{{ filter.createdAt | date:'medium' }}</td>
+  </tr>
+  </tbody>
+</table>
+</div>

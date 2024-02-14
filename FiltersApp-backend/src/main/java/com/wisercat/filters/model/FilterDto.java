@@ -16,7 +16,6 @@ public class FilterDto {
 
     private Long id;
     private String name;
-
     private List<CriteriaDto> criteriaList;
     private Date createdAt;
 }

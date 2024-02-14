@@ -11,7 +11,7 @@ import lombok.Setter;
 @AllArgsConstructor
 public class CriteriaDto {
     private Long id;
-    private String type;
-    private String condition;
-    private String value;
+    private CriteriaType type;
+    private ComparisonType condition;
+    private String comparingValue;
 }

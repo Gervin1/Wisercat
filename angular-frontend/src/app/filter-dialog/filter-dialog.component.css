@@ -1,0 +1,92 @@
+.filter-dialog {
+  max-height: 80vh;
+  overflow-y: auto;
+  padding: 20px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  background-color: #fff;
+}
+
+#filterName {
+  margin: 10px;
+}
+
+.criteria-item select, .criteria-item input {
+  margin-right: 10px;
+  border-radius: 4px;
+  border: 1px solid #ced4da;
+}
+
+.criteria-item {
+  display: flex;
+  align-items: center;
+  gap: 5px
+}
+
+.criteria-type,
+.criteria-condition,
+.criteria-values,
+.remove-criteria {
+  flex: 1;
+}
+
+.criteria-values {
+  display: flex;
+  gap: 10px;
+}
+
+.remove-criteria-btn {
+  background-color: hotpink;
+  color: white;
+  width: 30px;
+  height: 30px;
+  line-height: 30px;
+  text-align: center;
+  border: none;
+  border-radius: 5px;
+}
+
+.criteria-item select, .criteria-item input, #filterName {
+  padding: 0.5rem;
+  margin-top: 10px;
+  border: 1px solid #ced4da;
+  border-radius: 5px;
+  background-color: #ffffff;
+  box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.075);
+  margin-right: 10px;
+  font-size: 1rem;
+}
+
+.criteria-item select:hover, .criteria-item input:hover, .criteria-item select:focus, .criteria-item input:focus {
+  border-color: #84c5f4;
+  box-shadow: inset 0 1px 2px #007BFF3F, 0 0 5px #82B1FF7F;
+}
+
+.add-criteria-btn {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  padding: 0.5rem;
+  color: white;
+  border: 1px solid #ced4da;
+  border-radius: 5px;
+  background-color: #696969;
+  box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.075);
+  font-size: 1rem;
+  margin-top: 10px;
+}
+
+.close-btn, .submit-btn {
+  padding: 0.5rem;
+  color: white;
+  border: 1px solid #ced4da;
+  border-radius: 5px;
+  background-color: #696969;
+  box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.075);
+  font-size: 1rem;
+  margin-top: 10px;
+}
+
+input.ng-invalid.ng-touched, #filterName.ng-invalid {
+  border-color: red;
+}

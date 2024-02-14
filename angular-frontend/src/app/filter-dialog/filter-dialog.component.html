@@ -1,1 +1,49 @@
-<p>filter-dialog works!</p>
+<div class="filter-dialog">
+  <h2>Filter</h2>
+  <form [formGroup]="filterForm" (ngSubmit)="saveFilter()">
+    <div class="filter-name-group">
+      <label for="filterName">Filter Name</label>
+      <input id="filterName" formControlName="name" required>
+    </div>
+
+    <div formArrayName="criteriaList" class="criteria-list">
+      <div *ngFor="let criterion of criteriaList.controls; let i=index" class="criteria-item" [formGroupName]="i">
+        <select formControlName="type" class="criteria-type">
+          <option value="NUMBER">Amount</option>
+          <option value="TEXT">Title</option>
+          <option value="DATE">Date</option>
+        </select>
+
+        <select formControlName="condition" class="criteria-condition">
+          <option *ngFor="let cond of getConditions(criterion.get('type')?.value)" [value]="cond">
+            {{ cond }}
+          </option>
+        </select>
+
+        <div *ngIf="criterion.get('type')?.value === 'DATE'" class="criteria-values">
+          <select formControlName="comparingDay">
+            <option *ngFor="let day of days" [value]="day">{{ day }}</option>
+          </select>
+
+          <select formControlName="comparingMonth">
+            <option *ngFor="let month of months" [value]="month">{{ month }}</option>
+          </select>
+
+          <select formControlName="comparingYear">
+            <option *ngFor="let year of years" [value]="year">{{ year }}</option>
+          </select>
+        </div>
+
+        <input *ngIf="criterion.get('type')?.value !== 'DATE'" formControlName="comparingValue" placeholder="Value" required>
+
+        <button class="remove-criteria-btn" type="button" (click)="removeCriteria(i)">-</button>
+      </div>
+    </div>
+
+    <button class="add-criteria-btn" type="button" (click)="addCriteria()">Add Row</button>
+    <div class="actions">
+      <button class="close-btn" type="button" (click)="closeDialog()">Close</button>
+      <button class="submit-btn" type="submit">Save Filter</button>
+    </div>
+  </form>
+</div>
