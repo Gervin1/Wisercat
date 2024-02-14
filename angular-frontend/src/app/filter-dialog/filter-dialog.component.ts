@@ -2,6 +2,7 @@ import { Component, EventEmitter, Output } from '@angular/core';
 import { FormArray, FormBuilder, FormGroup, ReactiveFormsModule, Validators } from "@angular/forms";
 import { FilterService } from "../filter.service";
 import { NgForOf, NgIf } from "@angular/common";
+import { MatDialogRef } from "@angular/material/dialog";
 
 @Component({
   selector: 'app-filter-dialog',
@@ -20,8 +21,13 @@ export class FilterDialogComponent {
   days: number[] = [];
   months: number[] = [];
   years: number[] = [];
+  errorMessage: string | null = null;
 
-  constructor(private fb: FormBuilder, private filterService: FilterService) {
+  constructor(
+    private fb: FormBuilder,
+    private filterService: FilterService,
+    private dialogRef: MatDialogRef<FilterDialogComponent>
+  ) {
     this.initializeDateValues();
     this.filterForm = this.fb.group({
       name: [ '', Validators.required ],
@@ -106,37 +112,36 @@ export class FilterDialogComponent {
     const filterValue = this.filterForm.value;
     const adjustedCriteriaList = filterValue.criteriaList.map((criteria: any) => {
       if (criteria.type === 'DATE') {
-        const comparingValue = criteria.comparingDay && criteria.comparingMonth && criteria.comparingYear
-          ? `${criteria.comparingDay}-${criteria.comparingMonth}-${criteria.comparingYear}`
-          : '';
-
-        return {
-          ...criteria,
-          comparingValue,
-          comparingDay: undefined,
-          comparingMonth: undefined,
-          comparingYear: undefined,
-        };
+        const comparingValue = this.combineDate(criteria.comparingYear, criteria.comparingMonth, criteria.comparingDay);
+        return { ...criteria, comparingValue };
       } else {
         return criteria;
       }
     });
 
-    const adjustedFilterValue = { ...filterValue, criteriaList: adjustedCriteriaList };
+    const adjustedFilterValue = {...filterValue, criteriaList: adjustedCriteriaList};
 
     if (!this.filterForm.valid) {
       return;
     }
 
     this.filterService.addFilter(adjustedFilterValue).subscribe(result => {
-      console.log('Filter Saved:', result);
-      this.closeDialog(true);
-    });
-
+      this.closeDialog(true)
+    }, error => {
+      console.error('Error saving filter:', error);
+      this.errorMessage = 'Failed to save the filter. Please try again.';
+    }
+  );
   }
+
+  private combineDate(year: number, month: number, day: number): string {
+    return `${year}-${month}-${day}`;
+  }
+
 
   closeDialog(saved: boolean = false) {
     this.dialogClose.emit(saved);
+    this.dialogRef.close();
   }
 
   private initializeDateValues() {

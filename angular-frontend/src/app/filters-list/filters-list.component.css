@@ -46,3 +46,7 @@ td ul {
 td ul li {
   padding: 2px 0;
 }
+
+.filters-list button {
+  margin-right: 10px;
+}

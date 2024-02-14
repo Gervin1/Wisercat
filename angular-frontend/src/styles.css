@@ -7,3 +7,18 @@ body {
 html, body {
   height: 100%;
 }
+
+.resizable-dialog .mat-dialog-container {
+  resize: vertical;
+  overflow: auto;
+}
+
+.error-message {
+  color: darkred;
+  background-color: #ffd6e0;
+  border-color: hotpink;
+  padding: 0.75rem 1.25rem;
+  margin-bottom: 1rem;
+  border: 1px solid transparent;
+  border-radius: 0.25rem;
+}

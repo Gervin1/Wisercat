@@ -1,5 +1,10 @@
 <div class="filter-dialog">
   <h2>Filter</h2>
+
+  <div *ngIf="errorMessage" class="error-message">
+    {{ errorMessage }}
+  </div>
+
   <form [formGroup]="filterForm" (ngSubmit)="saveFilter()">
     <div class="filter-name-group">
       <label for="filterName">Filter Name</label>

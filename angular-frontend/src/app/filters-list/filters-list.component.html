@@ -2,6 +2,10 @@
   <button (click)="openFilterModal()">Add Filter (Modal)</button>
   <button (click)="openFilterNonModal()">Add Filter (Non-Modal)</button>
 
+  <div *ngIf="errorMessage" class="error-message">
+    {{ errorMessage }}
+  </div>
+
   <div #dialogContainer></div>
 <table>
   <thead>
