@@ -3,6 +3,7 @@ import { FilterService } from "../filter.service";
 import { FilterDialogComponent } from "../filter-dialog/filter-dialog.component";
 import { DatePipe, NgForOf, NgIf } from "@angular/common";
 import { MatDialog } from "@angular/material/dialog";
+import { Filter } from "../models/filter.model";
 
 @Component({
   selector: 'app-filters-list',
@@ -33,7 +34,7 @@ export class FiltersListComponent implements OnInit {
   }
 
   loadFilters() {
-    this.filterService.getFilters().subscribe(data => {
+    this.filterService.getFilters().subscribe((data: Filter[]) => {
       this.filters = data;
     },
       error =>  {

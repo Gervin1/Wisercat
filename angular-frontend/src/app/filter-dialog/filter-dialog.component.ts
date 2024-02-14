@@ -3,6 +3,7 @@ import { FormArray, FormBuilder, FormGroup, ReactiveFormsModule, Validators } fr
 import { FilterService } from "../filter.service";
 import { NgForOf, NgIf } from "@angular/common";
 import { MatDialogRef } from "@angular/material/dialog";
+import { Filter } from "../models/filter.model";
 
 @Component({
   selector: 'app-filter-dialog',
@@ -109,8 +110,8 @@ export class FilterDialogComponent {
   }
 
   saveFilter() {
-    const filterValue = this.filterForm.value;
-    const adjustedCriteriaList = filterValue.criteriaList.map((criteria: any) => {
+    const filter: Filter = {...this.filterForm.value};
+    const adjustedCriteriaList = filter.criteriaList.map((criteria: any) => {
       if (criteria.type === 'DATE') {
         const comparingValue = this.combineDate(criteria.comparingYear, criteria.comparingMonth, criteria.comparingDay);
         return { ...criteria, comparingValue };
@@ -119,7 +120,7 @@ export class FilterDialogComponent {
       }
     });
 
-    const adjustedFilterValue = {...filterValue, criteriaList: adjustedCriteriaList};
+    const adjustedFilterValue = {...filter, criteriaList: adjustedCriteriaList};
 
     if (!this.filterForm.valid) {
       return;
@@ -152,5 +153,23 @@ export class FilterDialogComponent {
     const currentYear = new Date().getFullYear();
     this.years = Array.from({length: currentYear - 1899}, (_, i) => 1900 + i);
 
+  }
+
+  translateCondition(cond: string) {
+    const conditionMap: { [key: string]: string } = {
+      'NUMBER_LESS_THAN': '<',
+      'NUMBER_LESS_THAN_OR_EQUAL': '<=',
+      'NUMBER_EQUALS': '=',
+      'NUMBER_GREATER_THAN': '>',
+      'NUMBER_GREATER_THAN_OR_EQUAL': '>=',
+      'TEXT_STARTS_WITH': 'starts with',
+      'TEXT_ENDS_WITH': 'ends with',
+      'TEXT_CONTAINS': 'contains',
+      'TEXT_NOT_CONTAINS': 'does not contain',
+      'DATE_FROM': 'from',
+      'DATE_EQUALS': 'equals',
+      'DATE_BEFORE': 'before'
+    };
+    return conditionMap[cond] || cond;
   }
 }

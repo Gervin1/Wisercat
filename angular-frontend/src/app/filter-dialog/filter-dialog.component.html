@@ -21,7 +21,7 @@
 
         <select formControlName="condition" class="criteria-condition">
           <option *ngFor="let cond of getConditions(criterion.get('type')?.value)" [value]="cond">
-            {{ cond }}
+            {{ translateCondition(cond) }}
           </option>
         </select>
 

@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { catchError, Observable, throwError } from "rxjs";
 import { environment } from "../environments/environment"
 import { HttpClient, HttpErrorResponse } from "@angular/common/http";
+import { Filter } from "./models/filter.model";
 
 @Injectable({
   providedIn: 'root'
@@ -12,14 +13,14 @@ export class FilterService {
   }
 
   getFilters(): Observable<any> {
-    return this.http.get(environment.apiUrl + '/filters')
+    return this.http.get<Filter[]>(environment.apiUrl + '/filters')
       .pipe(
         catchError(this.handleError)
       );
   }
 
   addFilter(filter: any): Observable<any> {
-    return this.http.post(environment.apiUrl + '/filters', filter)
+    return this.http.post<Filter>(environment.apiUrl + '/filters', filter)
       .pipe(
         catchError(this.handleError)
       );
